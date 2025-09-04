@@ -49,3 +49,21 @@ df['revenue'] = df['quantity'] * df['price']
 df_sales = df[df['returned'] == 'N'].copy()
 print("Data merged and preprocessed.")
 
+# --- 4. Calculate Key KPIs ---
+print("\n--- Key Performance Indicators (KPIs) ---")
+total_revenue = df_sales['revenue'].sum()
+total_orders = df_sales['order_id'].nunique()
+aov = total_revenue / total_orders
+
+# Calculate Repeat Customer Rate
+customer_order_counts = df_sales['customer_id'].value_counts()
+repeat_customers = customer_order_counts[customer_order_counts > 1].count()
+total_customers = df_sales['customer_id'].nunique()
+repeat_customer_rate = (repeat_customers / total_customers) * 100
+
+print(f"Total Revenue: Rs. {total_revenue:,.0f}")
+print(f"Total Orders: {total_orders}")
+print(f"Average Order Value (AOV): Rs. {aov:,.0f}")
+print(f"Repeat Customer Rate: {repeat_customer_rate:.2f}%")
+
+
