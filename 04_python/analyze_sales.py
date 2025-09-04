@@ -4,9 +4,10 @@ import matplotlib.pyplot as plt
 import os
 
 # --- 1. Load Data ---
-# Set the base path to the project directory
-# IMPORTANT: Adjust this if your script is not in the '04_python' subfolder
-base_path = os.path.join('..', '01_data')
+# This script assumes it is located in the '04_python' folder.
+# The 'base_path' points up one level and then into the '01_data' folder.
+# This makes the script portable as long as the folder structure is maintained.
+base_path = os.path.join('..', '01_data') 
 
 customers_path = os.path.join(base_path, 'customers.csv')
 products_path = os.path.join(base_path, 'products.csv')
@@ -20,6 +21,6 @@ try:
     print("Data loaded successfully.")
 except FileNotFoundError as e:
     print(f"Error loading data: {e}")
-    print("Please make sure your CSV files are in the '01_data' folder")
+    print("Please make sure your CSV files are in the '01_data' folder and you are running this script from '04_python'.")
     exit()
 
