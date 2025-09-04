@@ -97,3 +97,16 @@ plt.tight_layout()
 plt.savefig('../06_reports/top_products.png')
 print("Saved top_products.png to '06_reports' folder.")
 
+# Plot 3: Revenue by City
+city_revenue = df_sales.groupby('city_x')['revenue'].sum().sort_values(ascending=False).head(5)
+
+plt.figure(figsize=(10, 6))
+city_revenue.sort_values(ascending=True).plot(kind='barh', color='salmon')
+plt.title('Top 5 Cities by Revenue')
+plt.xlabel('Total Revenue (Rs.)')
+plt.ylabel('City')
+plt.tight_layout()
+plt.savefig('../06_reports/city_revenue.png')
+print("Saved city_revenue.png to '06_reports' folder.")
+
+
