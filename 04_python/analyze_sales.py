@@ -67,3 +67,21 @@ print(f"Average Order Value (AOV): Rs. {aov:,.0f}")
 print(f"Repeat Customer Rate: {repeat_customer_rate:.2f}%")
 
 
+# --- 5. Create and Save Visualizations ---
+print("\nGenerating and saving visualizations...")
+
+# Plot 1: Monthly Sales Revenue
+df_sales['order_month'] = df_sales['order_date'].dt.to_period('M').astype(str)
+monthly_revenue = df_sales.groupby('order_month')['revenue'].sum()
+
+plt.figure(figsize=(12, 6))
+monthly_revenue.plot(kind='line', marker='o', color='teal')
+plt.title('Monthly Sales Revenue for Mehr Perfumes (2024-2025)')
+plt.xlabel('Month')
+plt.ylabel('Total Revenue (Rs.)')
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('../06_reports/monthly_sales.png')
+print("Saved monthly_sales.png to '06_reports' folder.")
+
