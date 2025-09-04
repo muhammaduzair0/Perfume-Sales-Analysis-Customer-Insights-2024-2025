@@ -57,3 +57,21 @@ WHERE o.returned = "N"
 GROUP BY o.channel
 ORDER BY channel_revenue DESC;
 
+-- What percentage of customers are repeat buyers?
+WITH CustomerOrderCounts AS (
+	SELECT 
+		customer_id,
+		COUNT(DISTINCT order_id) AS order_count
+    FROM orders
+    WHERE returned = 'N'
+    GROUP BY customer_id
+)
+SELECT
+	CASE
+		WHEN order_count > 1 THEN 'Repeat Customer'
+        ELSE 'New Customer'
+	END AS customer_type,
+    COUNT(customer_id) AS number_of_customers
+FROM CustomerOrderCounts
+GROUP BY customer_type;
+
