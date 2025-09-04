@@ -110,3 +110,10 @@ plt.savefig('../06_reports/city_revenue.png')
 print("Saved city_revenue.png to '06_reports' folder.")
 
 
+# --- 6. Save Cleaned Data for Power BI ---
+# We will save the main merged dataframe (df), which includes returned items.
+# This allows us to analyze returns in Power BI if we want to.
+output_path = os.path.join('..', '05_powerbi', 'clean_mehr_data.csv')
+df.to_csv(output_path, index=False)
+
+print(f"\nAnalysis complete. Cleaned data saved to: {output_path}")
