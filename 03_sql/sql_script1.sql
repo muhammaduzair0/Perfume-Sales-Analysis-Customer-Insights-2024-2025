@@ -75,3 +75,24 @@ SELECT
 FROM CustomerOrderCounts
 GROUP BY customer_type;
 
+-- What is the overall product return rate?
+SELECT
+	SUM(CASE WHEN returned = 'Y' THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS return_rate_percent
+FROM orders;
+
+-- This shows cumulative growth over time.
+WITH MonthlyRevenue AS (
+	SELECT
+		DATE_FORMAT(o.order_date, '%Y-%m') AS order_month,
+        SUM(p.price * o.quantity) AS monthly_revenue
+	FROM orders o
+    JOIN products p ON o.product_id = p.product_id
+    WHERE o.returned = 'N'
+    GROUP BY order_month
+)
+SELECT
+	order_month,
+    monthly_revenue,
+    SUM(monthly_revenue) OVER (ORDER BY order_month) AS running_total_revenue 
+FROM MonthlyRevenue;
+
