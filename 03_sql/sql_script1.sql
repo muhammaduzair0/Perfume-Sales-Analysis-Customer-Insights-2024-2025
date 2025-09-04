@@ -14,3 +14,13 @@ SELECT
     JOIN products p ON o.product_id = p.product_id
     WHERE o.returned = 'N';
     
+-- What is the monthly sales trend?
+SELECT
+	DATE_FORMAT(o.order_date, '%Y-%m') AS order_month,
+    SUM(p.price * o.quantity) AS monthly_revenue
+    FROM orders o
+    JOIN products p ON o.product_id = p.product_id
+    WHERE o.returned = 'N'
+    GROUP BY order_month
+    ORDER BY order_month;
+    
