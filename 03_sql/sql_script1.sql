@@ -24,3 +24,14 @@ SELECT
     GROUP BY order_month
     ORDER BY order_month;
     
+-- Which cities generate the most revenue?
+SELECT
+	o.city,
+    SUM(p.price * o.quantity) AS city_revenue
+    FROM orders o
+    JOIN products p ON o.product_id = p.product_id
+    WHERE o.returned = 'N'
+    GROUP BY o.city
+    ORDER BY city_revenue DESC
+    LIMIT 5;
+    
