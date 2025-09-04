@@ -85,3 +85,15 @@ plt.tight_layout()
 plt.savefig('../06_reports/monthly_sales.png')
 print("Saved monthly_sales.png to '06_reports' folder.")
 
+# Plot 2: Top 5 Perfumes by Revenue
+top_products = df_sales.groupby('perfume_name')['revenue'].sum().sort_values(ascending=False).head(5)
+
+plt.figure(figsize=(10, 6))
+top_products.sort_values(ascending=True).plot(kind='barh', color='skyblue')
+plt.title('Top 5 Perfumes by Revenue')
+plt.xlabel('Total Revenue (Rs.)')
+plt.ylabel('Perfume')
+plt.tight_layout()
+plt.savefig('../06_reports/top_products.png')
+print("Saved top_products.png to '06_reports' folder.")
+
