@@ -24,3 +24,13 @@ except FileNotFoundError as e:
     print("Please make sure your CSV files are in the '01_data' folder and you are running this script from '04_python'.")
     exit()
 
+# --- 2. Clean and Preprocess Data ---
+print("\nCleaning and preprocessing data...")
+# Convert date columns to datetime objects for time-based analysis
+orders_df['order_date'] = pd.to_datetime(orders_df['order_date'])
+customers_df['signup_date'] = pd.to_datetime(customers_df['signup_date'])
+
+# Standardize text data for consistency
+orders_df['channel'] = orders_df['channel'].str.title()
+orders_df['payment_method'] = orders_df['payment_method'].str.replace('_', ' ').str.title()
+
