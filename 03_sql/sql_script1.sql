@@ -96,3 +96,20 @@ SELECT
     SUM(monthly_revenue) OVER (ORDER BY order_month) AS running_total_revenue 
 FROM MonthlyRevenue;
 
+-- This helps identify the top performer in each category (Men, Women, etc.).
+WITH ProductRevenue AS (
+	SELECT
+		p.category,
+        p.perfume_name,
+        SUM(p.price * o.quantity) AS total_revenue
+	FROM orders o
+	JOIN products p ON o.product_id = p.product_id
+	WHERE o.returned = "N"
+	GROUP BY p.category, p.perfume_name
+)
+SELECT
+	category,
+    perfume_name,
+    total_revenue,
+    RANK() OVER (PARTITION BY category ORDER BY total_revenue DESC) AS  rank_in_category
+    FROM ProductRevenue;
