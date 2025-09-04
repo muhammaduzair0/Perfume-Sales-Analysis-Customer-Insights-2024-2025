@@ -1,7 +1,7 @@
 # Mehr Perfumes: E-Commerce Sales Analysis
 
 ## Project Overview
-This project is a comprehensive analysis of sales data for Mehr Perfumes, a retail e-commerce business based in Pakistan. The goal is to identify key trends in sales, customer behavior, and product performance to provide actionable insights for business growth.
+This project is a comprehensive analysis of sales data for Mehr Perfumes, a retail e-commerce business based in Pakistan. The goal is to identify key trends in sales, customer behavior, and product performance, providing actionable insights for business growth.
 
 ## Business Questions
 1. What is our total revenue and AOV?
@@ -23,7 +23,6 @@ This project is a comprehensive analysis of sales data for Mehr Perfumes, a reta
 - **Repeat Customer Rate:** 33.6%
 
 ### Visualizations
-**(Embed the .png images you created with Python here)**
 
 **Monthly Sales Trend**
 ![Monthly Sales](06_reports/monthly_sales.png)
@@ -36,10 +35,10 @@ This project is a comprehensive analysis of sales data for Mehr Perfumes, a reta
 
 ## Interactive Dashboard
 A Power BI dashboard was created to provide an interactive way to explore the sales data. 
-**(Add a screenshot of your Power BI dashboard here)**
+![Mehr_Perfumes_Sales_Dashboard](05_powerbi/Mehr_Perfumes_Sales_Dashboard.png)
 
 ## Conclusions & Recommendations
 - **Focus Marketing on Top Cities:** Allocate more marketing budget to Karachi and Lahore.
 - **Inventory Management:** Ensure top-selling products like 'Majesty' and 'Arwaah' are always in stock.
 - **Channel Strategy:** Double down on Instagram marketing and optimize the Website sales funnel.
-- **Customer Loyalty Program:** Launch a program to further increase the 33.6% repeat customer rate.
+- **Customer Loyalty Program:** Launch a program to increase the 33.6% repeat customer rate further.
