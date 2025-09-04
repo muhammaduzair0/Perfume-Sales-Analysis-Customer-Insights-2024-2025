@@ -46,3 +46,14 @@ GROUP BY p.perfume_name
 ORDER BY product_revenue DESC
 LIMIT 10;
 
+-- How effective are our sales channels?
+SELECT
+	o.channel,
+    SUM(p.price * o.quantity) AS channel_revenue,
+    COUNT(DISTINCT o.order_id) AS number_of_orders
+FROM orders o 
+JOIN products p ON o.product_id = p.product_id
+WHERE o.returned = "N"
+GROUP BY o.channel
+ORDER BY channel_revenue DESC;
+
