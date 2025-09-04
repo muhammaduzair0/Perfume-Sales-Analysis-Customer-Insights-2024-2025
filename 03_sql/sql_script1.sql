@@ -35,3 +35,14 @@ SELECT
     ORDER BY city_revenue DESC
     LIMIT 5;
     
+-- What are our best-selling perfumes?
+SELECT
+	p.perfume_name,
+    SUM(p.price * o.quantity) AS product_revenue
+FROM orders o
+JOIN products p ON o.product_id = p.product_id
+WHERE o.returned = "N"
+GROUP BY p.perfume_name
+ORDER BY product_revenue DESC
+LIMIT 10;
+
