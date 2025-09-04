@@ -7,3 +7,10 @@ FROM orders o
 JOIN products p ON o.product_id = p.product_id
 WHERE o.returned = 'N';
     
+-- What is our AOV?
+SELECT
+	CAST(SUM(p.price * o.quantity) / COUNT(DISTINCT o.order_id) AS UNSIGNED) AS average_order_value
+    FROM orders o
+    JOIN products p ON o.product_id = p.product_id
+    WHERE o.returned = 'N';
+    
