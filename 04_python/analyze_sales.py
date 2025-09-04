@@ -34,3 +34,18 @@ customers_df['signup_date'] = pd.to_datetime(customers_df['signup_date'])
 orders_df['channel'] = orders_df['channel'].str.title()
 orders_df['payment_method'] = orders_df['payment_method'].str.replace('_', ' ').str.title()
 
+# --- 3. Merge DataFrames ---
+# Create one master DataFrame containing all information for our analysis
+print("Merging data...")
+# Merge orders with products to get price and product details
+df = pd.merge(orders_df, products_df, on='product_id', how='left')
+# Merge the result with customers to get customer details
+df = pd.merge(df, customers_df, on='customer_id', how='left')
+
+# Create a new 'revenue' column for financial calculations
+df['revenue'] = df['quantity'] * df['price']
+
+# Create a separate dataframe for financial analysis that excludes returned orders
+df_sales = df[df['returned'] == 'N'].copy()
+print("Data merged and preprocessed.")
+
